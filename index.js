@@ -56,39 +56,3 @@ app.delete('/info/:id', (req, res) => {
 app.listen(port, () => {
     console.log(`Server is running at http://localhost:${port}`);
 });
-
-// // Endpoint to edit info
-// app.put('/info', (req, res) => {
-//     const updatedInfo = req.body;
-
-// // To check if there are any info to update
-// if (infoArray.length === 0) {
-//     return res.status(404).json({ message: 'no info found'});
-// }
-
-// // update all info
-// infoArray.forEach((info) => {
-//     Object.assign(info, updatedInfo);
-// });
-
-// res.json({ message: ' All info updated successfully', info: infoArray});
-// });
-
-// // Endpoint to delete info
-// app.delete('/info', (req, res) => {
-
-//     // check if there are infos to be deleted
-//     if (infoArray.length === 0) {
-//         return res.stauts(404).json({ message: 'nothing to delete'});
-//     }
-
-// // removing all details
-// infoArray = [];
-
-//     res.json({ message: 'All info deleted successfully'});
-// });
-
-// // starting the server
-// app.listen(port, () => {
-//     console.log(`server is running at http://localhost:${port}`);
-// });
