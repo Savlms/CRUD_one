@@ -41,12 +41,11 @@ app.put('/info/:id', (req, res) => {
 
     res.json({ message: 'Information updated successfully', info: infoToUpdate });
 });
-
-// Endpoint to delete details by ID
+// Endpoint to delete info by ID
 app.delete('/info/:id', (req, res) => {
     const infosId = req.params.id;
 
-    // Remove details by ID
+    // Remove info by ID
     detailsArray = detailsArray.filter(info => infos.id !== infosId);
 
     res.json({ message: ' information deleted successfully' });
