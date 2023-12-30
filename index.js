@@ -25,38 +25,70 @@ app.get('/info', (req, res) => {
     res.json({info: infoArray});
 });
 
-// Endpoint to edit info
-app.put('/info', (req, res) => {
+// Endpoint to edit info by ID
+app.put('/info/:id', (req, res) => {
+    const infosId = req.params.id;
     const updatedInfo = req.body;
 
-// To check if there are any info to update
-if (infoArray.length === 0) {
-    return res.status(404).json({ message: 'no info found'});
-}
+    // Find info by ID and update
+    const infoToUpdate = infoArrayArray.find(info => info.id === infoId);
 
-// update all info
-infoArray.forEach((info) => {
-    Object.assign(info, updatedInfo);
-});
-
-res.json({ message: ' All info updated successfully', info: infoArray});
-});
-
-// Endpoint to delete info
-app.delete('/info', (req, res) => {
-
-    // check if there are infos to be deleted
-    if (infoArray.length === 0) {
-        return res.stauts(404).json({ message: 'nothing to delete'});
+    if (!infoToUpdate) {
+        return res.status(404).json({ message: ' Information not found' });
     }
 
-// removing all details
-infoArray = [];
+    Object.assign(infoToUpdate, updatedInfo);
 
-    res.json({ message: 'All info deleted successfully'});
+    res.json({ message: 'Information updated successfully', info: infoToUpdate });
 });
 
-// starting the server
+// Endpoint to delete details by ID
+app.delete('/info/:id', (req, res) => {
+    const infosId = req.params.id;
+
+    // Remove details by ID
+    detailsArray = detailsArray.filter(info => infos.id !== infosId);
+
+    res.json({ message: ' information deleted successfully' });
+});
+
+// Start the server
 app.listen(port, () => {
-    console.log(`server is running at http://localhost:${port}`);
+    console.log(`Server is running at http://localhost:${port}`);
 });
+
+// // Endpoint to edit info
+// app.put('/info', (req, res) => {
+//     const updatedInfo = req.body;
+
+// // To check if there are any info to update
+// if (infoArray.length === 0) {
+//     return res.status(404).json({ message: 'no info found'});
+// }
+
+// // update all info
+// infoArray.forEach((info) => {
+//     Object.assign(info, updatedInfo);
+// });
+
+// res.json({ message: ' All info updated successfully', info: infoArray});
+// });
+
+// // Endpoint to delete info
+// app.delete('/info', (req, res) => {
+
+//     // check if there are infos to be deleted
+//     if (infoArray.length === 0) {
+//         return res.stauts(404).json({ message: 'nothing to delete'});
+//     }
+
+// // removing all details
+// infoArray = [];
+
+//     res.json({ message: 'All info deleted successfully'});
+// });
+
+// // starting the server
+// app.listen(port, () => {
+//     console.log(`server is running at http://localhost:${port}`);
+// });
